@@ -3,7 +3,7 @@
 
     <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg  max-w-2xl mx-auto">
                 <div class="p-4 text-gray-900">
                     <ul
                         class="flex flex-wrap justify-center text-sm font-medium text-center text-gray-500 dark:text-gray-400">
@@ -21,26 +21,19 @@
 
                 </div>
             </div>
-            <div class="mt-10 bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-4 text-gray-900">
-                    <ul
-                        class="flex flex-wrap justify-center text-sm font-medium text-center text-gray-500 dark:text-gray-400">
-                        <li class="me-2">
-                            <a href="#" class="inline-block px-4 py-3 rounded-lg text-white bg-blue-600 active">All</a>
-                        </li>
+            <div class="mt-10 text-gray-900">
+                <div class="p-4">
+                    <ul class="text-sm font-medium text-gray-500 dark:text-gray-400 space-y-5">
                         @foreach ($posts as $post)
-                            <div
-                                class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-                                <a href="#">
-                                    <img class="rounded-t-lg" src="/docs/images/blog/image-1.jpg" alt="" />
-                                </a>
-                                <div class="p-5">
+                            <div class="flex bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800">
+
+                                <div class="p-5 flex-1">
                                     <a href="#">
                                         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                                            Noteworthy technology acquisitions 2021</h5>
+                                            {{ $post->title }}</h5>
                                     </a>
-                                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest
-                                        enterprise technology acquisitions of 2021 so far, in reverse chronological order.
+                                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                                        {{ Str::words($post->content, 28) }}
                                     </p>
                                     <a href="#"
                                         class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -52,12 +45,17 @@
                                         </svg>
                                     </a>
                                 </div>
+                                <a href="#">
+                                    <img class="w-56 h-full object-cover rounded-r-lg"
+                                        src="https://flowbite.com/docs/images/blog/image-1.jpg" alt="/" />
+                                </a>
                             </div>
                         @endforeach
 
                     </ul>
-
+                    <div class="mt-6">
+                        {{ $posts->onEachSide(1)->links() }}
+                    </div>
                 </div>
             </div>
-        </div>
 </x-app-layout>
